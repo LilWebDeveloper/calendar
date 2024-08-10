@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import "moment/locale/pl";
+import classes from "./styles/Description.module.css";
 
 import { ViewState, EditingState } from "@devexpress/dx-react-scheduler";
 import {
@@ -18,6 +19,7 @@ import {
   Toolbar,
   AllDayPanel,
 } from "@devexpress/dx-react-scheduler-material-ui";
+
 import {
   collection,
   addDoc,
@@ -26,7 +28,6 @@ import {
   onSnapshot,
   doc,
 } from "firebase/firestore";
-
 import { db } from "./firebaseConfig";
 
 import parseDateString from "./utils/paarseDateString";
@@ -38,6 +39,22 @@ import {
   DateEditor,
   CustomCommandButton,
 } from "./components/CustomAppointmentForm";
+
+const CustomAppointmentTooltipContent = ({ appointmentData, ...restProps }) => (
+  <AppointmentTooltip.Content
+    {...restProps}
+    appointmentData={{
+      ...appointmentData,
+      description: appointmentData.description || "Brak notatki", // Ensure description field is handled
+    }}
+  >
+    <div className={classes.customTooltipContent}>
+      <div className={classes.customTooltipDescription}>
+        <strong>Notatka:</strong> {appointmentData.notes}
+      </div>
+    </div>
+  </AppointmentTooltip.Content>
+);
 
 const App = () => {
   const currentDate = new Date();
@@ -132,7 +149,11 @@ const App = () => {
         <ViewSwitcher />
         <TodayButton messages={{ today: "Dzisiaj" }} />
         <Appointments />
-        <AppointmentTooltip showOpenButton showDeleteButton />
+        <AppointmentTooltip
+          showOpenButton
+          showDeleteButton
+          contentComponent={CustomAppointmentTooltipContent}
+        />
         <AppointmentForm
           commandButtonComponent={CustomCommandButton}
           dateEditorComponent={DateEditor}

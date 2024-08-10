@@ -50,7 +50,7 @@ const DateEditor = ({ excludeTime, ...restProps }) => {
     <AppointmentForm.DateEditor
       {...restProps}
       excludeTime={excludeTime}
-      inputFormat={"MM/DD/YYYY HH:mm"}
+      inputFormat={"DD/MM/YYYY HH:mm"}
     />
   );
 };
@@ -61,8 +61,7 @@ const CustomCommandButton = ({ id, onExecute, ...restProps }) => {
       <Button
         {...restProps}
         onClick={() => {
-          console.log("Save button clicked"); // Logowanie kliknięcia
-          onExecute(); // Wykonanie domyślnej funkcji
+          onExecute();
         }}
         variant="contained"
         color="primary"
@@ -75,8 +74,8 @@ const CustomCommandButton = ({ id, onExecute, ...restProps }) => {
       <Button
         {...restProps}
         onClick={() => {
-          console.log("Save button clicked"); // Logowanie kliknięcia
-          onExecute(); // Wykonanie domyślnej funkcji
+
+          onExecute();
         }}
         style={{ marginRight: "auto", marginLeft: "1rem" }}
         variant="contained"

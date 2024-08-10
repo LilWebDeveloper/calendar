@@ -1,0 +1,10 @@
+.customTooltipContent {
+  max-width: 300px;
+}
+
+.customTooltipDescription {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
