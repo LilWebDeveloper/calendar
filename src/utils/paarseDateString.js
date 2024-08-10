@@ -1,12 +1,10 @@
 const parseDateString = (dateString) => {
   if (typeof dateString !== "string") {
-    console.error("Invalid date string:", dateString);
     return null;
   }
 
   const [datePart, timePart] = dateString.split(" ");
   if (!datePart || !timePart) {
-    console.error("Date string does not match expected format:", dateString);
     return null;
   }
 
